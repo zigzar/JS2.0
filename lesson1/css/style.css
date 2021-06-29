@@ -161,9 +161,24 @@ a {
 .cart {
     margin-top: 10px;
 }
+/* .cart-dropdown_menu span {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    color: white;
+    background: #f16d7f;
+    border-radius: 50%;
+    position: absolute;
+    text-align: center;
+    right: -8px;
+    top: -19px;
+    font-size: 12px;
+    line-height: 19px;
+} */
 .cart-dropdown {
     z-index: 1;
 } 
+
 .cart-dropdown_menu {
     list-style: none;
     outline: none;

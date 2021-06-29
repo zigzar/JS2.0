@@ -16,7 +16,7 @@ function getProductMarkup(product) {
                 </div>
             </a>
             <div class="box-add">
-                <a class="add" href="#"><img class="add-img" src="${pathToImages}/cart_add.svg" alt="cart-img">Add to
+                <a class="add" dataproductId = "${product.id}" href="#"><img class="add-img" src="${pathToImages}/cart_add.svg" alt="cart-img">Add to
                     cart</a>
             </div>
         </div>
@@ -31,4 +31,15 @@ function addProducts(products) {
     const boxProducts = document.querySelector('.box-product');
     boxProducts.innerHTML = productsMarkup;
 }
+function addEventListenerForAddToCart() {
+    const addToCartBtns = document.querySelectorAll('a[data-productId]');
+    addToCartBtns.forEach(function (a) {
+        a.addEventListener('click', addedProductHandler);
+    });
+}
+function addedProductHandler(event) {
+    const productId = event.currentTarget.getAttribute('data-productId');
+    addProductIntoBasket(productId);
+}
 addProducts(products);
+addEventListenerForAddToCart();

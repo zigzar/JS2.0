@@ -20,8 +20,9 @@ class Basket {
 }
 
 const openBasketBtn = document.querySelector('cart-dropdown');
+const basketEl = document.querySelector('.cart-dropdown_menu_box');
 openBasketBtn.addEventListener('click', function () {
-
+    basketEl.classList.toggle('hidden');
 })
 let basket = {};
 
@@ -38,10 +39,25 @@ function addProductToObject(productId) {
     }
 }
 /**
- * Метод отрисовывает новый товар в корзине
+ * Функция срабатывает когда нужно отрисовать продукт в корзине.
  * @param {number} productId
  */
 function renderProductInBasket(productId) {
+    let productExist = document.querySelector(`.productCount[data-productId="${productId}"]`);
+    if (productExist) {
+        increaseProductCount(productId);
+        recalculateSumForProduct(productId);
+    } else {
+        renderNewProductInBasket(productId);
+    }
+}
+
+
+/**
+ * Функция отрисовывает новый товар в корзине.
+ * @param {number} productId
+ */
+function renderNewProductInBasket(productId) {
     let productRow = `
     <div class="cart-dropdown_item">
         <div class="cart-dropdown_item_photo">
@@ -63,7 +79,10 @@ function renderProductInBasket(productId) {
  * @param {number} productId
  */
 function increaseProductCount(productId) {
+    const productCountEl = document.querySelector(`.productCount[data-productId="${productId}"]`);
+    productCountEl.textContent++;
 }
+
 
 /**
  * Метод пересчитывает стоимость товара умноженное на количество товара
@@ -71,13 +90,18 @@ function increaseProductCount(productId) {
  * @param {number} productId
  */
 function recalculateSumForProduct(productId) {
+    basketCounterEl.textContent++;
 }
 
 /**
  * Метод пересчитывает общую стоимость корзины и выводит это значение на страницу.
  */
 function calculateAndRenderTotalBasketSum() {
-
+    let totalSum = 0;
+    for (let productId in basket) {
+        totalSum += basket[productId] * products[productId].price;
+    }
+    basketTotalValueEl.textContent = totalSum.toFixed(2);
 }
 /**
  * Метод удаляет товар из корзины и пересчитывает общую сумму.

@@ -96,5 +96,3 @@ function addProductIntoBasket(productId) {
     renderProductInBasket(productId);
     calculateAndRenderTotalBasketSum();
 }
-
-

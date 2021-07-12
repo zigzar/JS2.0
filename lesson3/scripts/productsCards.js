@@ -1,9 +1,8 @@
-'use strict';
-
+"use strict";
 
 function getProductMarkup(product) {
-    const pathToImages = 'img';
-    return `
+	const pathToImages = "img";
+	return `
         <div class="item">
             <a class="product"
                 href="single page.html">
@@ -16,7 +15,7 @@ function getProductMarkup(product) {
                 </div>
             </a>
             <div class="box-add">
-                <a class="add" data-productId = "${product.id}" href="#"><img class="add-img" src="${pathToImages}/cart_add.svg" alt="cart-img">Add to
+                <a class="add" data-productid="${product.id}" href="#"><img class="add-img" src="${pathToImages}/cart_add.svg" alt="cart-img">Add to
                     cart</a>
             </div>
         </div>
@@ -24,22 +23,22 @@ function getProductMarkup(product) {
 }
 
 function addProducts(products) {
-    let productsMarkup = '';
-    for (let product of products) {
-        productsMarkup += getProductMarkup(product);
-    }
-    const boxProducts = document.querySelector('.box-product');
-    boxProducts.innerHTML = productsMarkup;
+	let productsMarkup = "";
+	for (let product of products) {
+		productsMarkup += getProductMarkup(product);
+	}
+	const boxProducts = document.querySelector(".box-product");
+	boxProducts.innerHTML = productsMarkup;
 }
 function addEventListenerForAddToCart() {
-    const addToCartBtns = document.querySelectorAll('a[data-productId]');
-    addToCartBtns.forEach(function (a) {
-        a.addEventListener('click', addedProductHandler);
-    });
+	const addToCartBtns = document.querySelectorAll("a[data-productid]");
+	addToCartBtns.forEach(function (a) {
+		a.addEventListener("click", addedProductHandler);
+	});
 }
 function addedProductHandler(event) {
-    const productId = event.currentTarget.getAttribute('data-productId');
-    addProductIntoBasket(productId);
+	const productId = event.currentTarget.getAttribute("data-productid");
+	addProductIntoBasket(productId);
 }
 addProducts(products);
 addEventListenerForAddToCart();
